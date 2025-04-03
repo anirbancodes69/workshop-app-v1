@@ -1,5 +1,16 @@
 {
   "version": 2,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; font-src 'self' https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; script-src 'self' 'unsafe-inline'; connect-src 'self'"
+        }
+      ]
+    }
+  ],
   "builds": [
     {
       "src": "server.js",
@@ -12,8 +23,12 @@
       "dest": "server.js"
     },
     {
+      "src": "/public/(.*)",
+      "dest": "/public/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "server.js"
+      "dest": "/public/index.html"
     }
   ]
 }
